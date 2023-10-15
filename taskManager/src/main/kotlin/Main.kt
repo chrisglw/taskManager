@@ -7,10 +7,12 @@ enum class Priority {
 class TaskManager {
     private val tasks = mutableListOf<Task>()
 
+    // Function to add a task to the task list
     fun addTask(task: Task) {
         tasks.add(task)
     }
 
+    // Function to delete a task from the task list
     fun deleteTask(task: Task) {
         if (task in tasks) {
             tasks.remove(task)
@@ -20,11 +22,13 @@ class TaskManager {
         }
     }
 
+    // Function to get a copy of the task list
     fun getTasks(): List<Task> {
         return tasks.toList()
     }
 }
 
+// Function to display the list of tasks in sorted order by priority
 fun displayTasks(tasks: List<Task>) {
     tasks.sortedBy { it.priority }.forEach { task ->
         println("Task Name: ${task.name}")
@@ -45,6 +49,7 @@ fun main() {
         println("4. Quit")
         print("Enter your choice: ")
 
+        // User menu choice
         when (readLine()) {
             "1" -> {
                 print("Enter task: ")
@@ -61,6 +66,7 @@ fun main() {
                     Priority.LOW
                 }
 
+                // Create a task and add it to the task manager
                 val task = Task(name, description, priority)
                 taskManager.addTask(task)
             }
